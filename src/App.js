@@ -19,9 +19,20 @@ function App(props) {
 
   function deleteNotes(id) {
     setNotes((preValue) => {
+      localStorage.removeItem(id+1);
       return [...preValue.filter((note, index) => index !== id)];
     });
   }
+
+  function allStorage() {
+    var keys = Object.keys(localStorage),
+    totalItems = keys.length;
+    return totalItems;
+  }
+  
+  var indexVal = allStorage();
+  let values = localStorage.getItem(indexVal);
+  const noteValues = JSON.parse(values);
 
   return (
     <div className="App">
@@ -29,15 +40,17 @@ function App(props) {
       <Count
         count={
           notes.length === 0
-            ? "Empty"
-            : `Showing ${notes.length} Notes in Database`
+            ? "No records"
+            : `Showing ${notes.length} Note(s)`
         }
       />
       <CreateArea onAdd={addNote} />
+      
       {notes.map((note, index) => (
         <Note
           key={index}
           id={index}
+          localContent = {values}
           title={note.title}
           content={note.content}
           onDelete={deleteNotes}  
