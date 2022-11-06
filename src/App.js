@@ -9,6 +9,10 @@ import {useState} from 'react';
 
 
 function App(props) {
+  App.listen(3000, function(){
+    console.log("info",'Server is running at port : ' + 3000);
+  });
+
   const [notes, setNotes] = useState([]);
 
   function addNote(newNote){
