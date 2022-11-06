@@ -32,7 +32,7 @@ function App(props) {
   
   var indexVal = allStorage();
   let values = localStorage.getItem(indexVal);
-  const noteValues = JSON.parse(values);
+  // const noteValues = JSON.parse(values);
 
   return (
     <div className="App">
